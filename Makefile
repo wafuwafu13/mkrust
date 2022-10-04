@@ -2,6 +2,10 @@
 build:
 	cargo build
 
+.PHONY: fmt
+fmt:
+	cargo fmt
+
 .PHONY: mkrust
-mkrust: build
+mkrust: build fmt
 	./target/debug/mkrust ${ARGS}
