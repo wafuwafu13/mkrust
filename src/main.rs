@@ -1,6 +1,7 @@
+use crate::mackerelclient::new::new;
 use clap::Parser;
-use mackerel_client::*;
-use std::env;
+
+mod mackerelclient;
 
 #[derive(Parser, Debug)]
 #[command(author, version, about, long_about = None)]
@@ -10,8 +11,7 @@ struct Cli {
 
 #[async_std::main]
 async fn main() {
-    let apikey = env::var("MACKEREL_API_KEY").unwrap();
-    let client = Client::new(&apikey);
+    let client = new();
     println!("{:?}", client.list_hosts().await);
 
     let cli = Cli::parse();
