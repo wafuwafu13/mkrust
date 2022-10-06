@@ -1,4 +1,6 @@
 use clap::Parser;
+use mackerel_client::*;
+use std::env;
 
 /// Simple program to greet a person
 #[derive(Parser, Debug)]
@@ -7,11 +9,16 @@ struct Cli {
     command: Option<String>,
 }
 
-fn main() {
+#[async_std::main]
+async fn main() {
+    let apikey = env::var("MACKEREL_API_KEY").unwrap();
+    let client = Client::new(&apikey);
+    println!("{:?}", client.list_hosts().await);
+
     let cli = Cli::parse();
 
     match cli.command.as_deref() {
         Some("hosts") => println!("TODO: implement `mkrust hosts`"),
-        _ => unimplemented!(),
+        _ => println!("TODO: implement other command"),
     }
 }
