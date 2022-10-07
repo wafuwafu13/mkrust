@@ -1,6 +1,7 @@
 use crate::mackerelclient::new::new;
 use clap::Parser;
 
+mod hosts;
 mod mackerelclient;
 
 #[derive(Parser, Debug)]
@@ -12,12 +13,11 @@ struct Cli {
 #[async_std::main]
 async fn main() {
     let client = new();
-    println!("{:?}", client.list_hosts().await);
 
     let cli = Cli::parse();
 
     match cli.command.as_deref() {
-        Some("hosts") => println!("TODO: implement `mkrust hosts`"),
+        Some("hosts") => hosts::app::find_hosts(client).await,
         _ => println!("TODO: implement other command"),
     }
 }
