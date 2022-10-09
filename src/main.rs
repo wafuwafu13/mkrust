@@ -1,5 +1,6 @@
 use crate::mackerelclient::new::new;
 use clap::Parser;
+use std::env::VarError;
 
 mod hosts;
 mod mackerelclient;
@@ -11,13 +12,16 @@ struct Cli {
 }
 
 #[async_std::main]
-async fn main() {
-    let client = new();
+async fn main() -> Result<(), VarError> {
+    let client = match new() {
+        Ok(client) => client,
+        Err(e) => return Err(e),
+    };
 
     let cli = Cli::parse();
 
     match cli.command.as_deref() {
-        Some("hosts") => hosts::app::find_hosts(client).await,
-        _ => println!("TODO: implement other command"),
+        Some("hosts") => Ok(hosts::app::find_hosts(client).await),
+        _ => Ok(println!("TODO: implement other command")),
     }
 }
