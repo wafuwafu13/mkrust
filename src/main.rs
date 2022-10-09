@@ -1,6 +1,7 @@
+use crate::error::*;
 use clap::Parser;
-use std::env::VarError;
 
+mod error;
 mod hosts;
 mod mackerelclient;
 
@@ -11,7 +12,7 @@ struct Cli {
 }
 
 #[async_std::main]
-async fn main() -> Result<(), VarError> {
+async fn main() -> Result<()> {
     let cli = Cli::parse();
 
     match cli.command.as_deref() {
