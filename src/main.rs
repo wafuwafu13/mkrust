@@ -2,6 +2,7 @@ use crate::error::*;
 use clap::Parser;
 
 mod error;
+mod format;
 mod hosts;
 mod mackerelclient;
 

@@ -1,8 +1,8 @@
-use crate::error::*;
 use crate::hosts::app::find_hosts;
 use crate::mackerelclient::new::new;
+use crate::{error::*, format::format::Host};
 
-pub async fn do_hosts() -> Result<Vec<mackerel_client::host::Host>> {
+pub async fn do_hosts() -> Result<Vec<Host>> {
     let client = match new() {
         Ok(client) => client,
         Err(e) => return Err(e),
