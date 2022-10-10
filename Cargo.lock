@@ -672,7 +672,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "mkrust"
+name = "mkr"
 version = "0.1.0"
 dependencies = [
  "async-std",
