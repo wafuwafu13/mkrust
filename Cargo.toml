@@ -13,4 +13,4 @@ edition = "2021"
 [dependencies]
 async-std = { version = "1.12.0", features = ["attributes", "tokio1"] }
 clap = { version = "4.0.9", features = ["derive"] }
-mackerel_client = { git = "https://github.com/itchyny/mackerel-client-rs" }
+mackerel_client = "0.4.0"
