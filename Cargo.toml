@@ -1,7 +1,7 @@
 [package]
 name = "mkr"
 version = "0.1.0"
-authors = "wafuwafu13"
+authors = ["wafuwafu13 <wafuwafumariobaske@gmail.com>"]
 description = "Command Line Tool for Mackerel"
 repository = "https://github.com/wafuwafu13/mkrust"
 readme = "README.md"
