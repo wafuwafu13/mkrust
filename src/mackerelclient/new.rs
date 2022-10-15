@@ -1,11 +1,10 @@
-use crate::error::*;
+use crate::{error::*, mackerelclient::env};
 use mackerel_client::*;
-use std::env;
 
 pub fn new() -> Result<Client> {
-    let apikey = match env::var("MACKEREL_API_KEY") {
+    let apikey = match env::get_apikey() {
         Ok(apikey) => apikey,
-        Err(e) => return Err(Error::EnvError(e)),
+        Err(e) => return Err(e),
     };
     return Ok(Client::new(&apikey));
 }
