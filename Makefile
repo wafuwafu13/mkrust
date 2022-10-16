@@ -7,5 +7,5 @@ fmt:
 	cargo fmt
 
 .PHONY: mkrust
-mkrust: build fmt
-	./target/debug/mkrust ${ARGS}
+mkrust: fmt
+	cargo run ${ARGS}
