@@ -678,6 +678,7 @@ dependencies = [
  "async-std",
  "clap",
  "mackerel_client",
+ "reqwest",
 ]
 
 [[package]]
