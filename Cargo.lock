@@ -679,6 +679,8 @@ dependencies = [
  "clap",
  "mackerel_client",
  "reqwest",
+ "serde",
+ "serde_derive",
 ]
 
 [[package]]
