@@ -1,4 +1,4 @@
-use crate::mackerelclient::env;
+use crate::mackerelclient::*;
 use serde_derive::Deserialize;
 use std::collections::HashMap;
 
@@ -30,7 +30,7 @@ struct ListHostsResponse {
     hosts: Vec<Host>,
 }
 
-pub async fn list_hosts() -> std::result::Result<(), Box<dyn std::error::Error>> {
+pub async fn list_hosts() -> std::result::Result<Vec<Host>, reqwest::Error> {
     let client = reqwest::Client::new();
     let resp = client
         .get("https://api.mackerelio.com/api/v0/hosts")
@@ -42,6 +42,8 @@ pub async fn list_hosts() -> std::result::Result<(), Box<dyn std::error::Error>>
         .await
         .map(|res: ListHostsResponse| res.hosts);
 
-    println!("{:?}", resp);
-    return Ok(());
+    match resp {
+        Ok(hosts) => return Ok(hosts),
+        Err(e) => return Err(e),
+    }
 }

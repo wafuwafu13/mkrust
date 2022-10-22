@@ -5,7 +5,7 @@ pub type Result<T> = std::result::Result<T, Error>;
 #[derive(Debug)]
 pub enum Error {
     EnvError(VarError),
-    ClientError(mackerel_client::error::Error),
+    RequestError(reqwest::Error),
 }
 
 impl fmt::Display for Error {
@@ -14,7 +14,7 @@ impl fmt::Display for Error {
             Error::EnvError(message) => {
                 write!(f, "message:{}", message)
             }
-            Error::ClientError(message) => write!(f, "message:{}", message),
+            Error::RequestError(message) => write!(f, "message:{}", message),
         }
     }
 }
